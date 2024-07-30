@@ -43,7 +43,9 @@ io.on("connection", (socket) => {
         console.log("disconnect")
     })
 })
-
+app.get("/", (req, res) => {
+    res.send("🚀 Working fine!");
+  });
 server.listen("3002", () => {
-    console.log("running on 3002 port")
+    console.log("running🚀")
 })
