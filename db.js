@@ -1,15 +1,3 @@
-/* const mongoose = require('mongoose')
-function Connection() {
-    const mongoURI = "mongodb+srv://begger-chat:begger-chat@begger-chat.d8m70wg.mongodb.net/mymongodb?retryWrites=true&w=majority&appName=begger-chat" 
-
-
-    mongoose.connect(mongoURI)
-        .then(() => console.log("connected"))
-        .catch(err => console.log(err))
-}
-
-module.exports = Connection */
-
 require('dotenv').config();
 const mongoose = require('mongoose');
 
