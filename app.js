@@ -34,6 +34,7 @@ io.on("connection", (socket) => {
             const newMessage = new Chat(msg)
             await newMessage.save()
             io.emit('message', msg)
+            console.log(msg)/* recieve messege on server */
         }catch(err) {
             console.log(err)
         }
@@ -44,8 +45,10 @@ io.on("connection", (socket) => {
     })
 })
 app.get("/", (req, res) => {
-    res.send("🚀 Working fine!");
+    res.send("Working fine!🚀");
   });
-server.listen("3002", () => {
-    console.log("running🚀")
+
+  const port="3002"
+server.listen(port, () => {
+    console.log(`Server running in ${port}🚀`)
 })
