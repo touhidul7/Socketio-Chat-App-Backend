@@ -42,6 +42,9 @@ io.on("connection", (socket) => {
 
     socket.on("disconnect", () => {
         console.log("disconnect")
+        app.get("/", (req, res) => {
+            res.send("disconnect");
+          });
     })
 })
 app.get("/", (req, res) => {
