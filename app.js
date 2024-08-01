@@ -11,7 +11,7 @@ Connection();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "*", // Replace with your frontend URL
+        origin: "https://beggarchat.netlify.app/", // Replace with your frontend URL
         methods: ["GET", "POST"]
     }
 });
