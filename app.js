@@ -3,20 +3,15 @@ const http = require('http');
 const { Server } = require('socket.io');
 const Connection = require('./db.js');
 const Chat = require('./models/Chat.js');
-const cors = require('cors');
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-    origin: 'https://beggarchat.netlify.app', // Allow this origin
-    methods: ["GET", "POST"]
-}));
 Connection();
 
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "https://beggarchat.netlify.app", // Allow this origin
+        origin: "*",
         methods: ["GET", "POST"]
     }
 });
