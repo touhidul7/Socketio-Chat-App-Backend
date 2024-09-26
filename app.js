@@ -18,7 +18,6 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
     console.log("User connected");
-
     const loadMessages = async () => {
         try {
             const messages = await Chat.find().sort({ timeStamp: 1 }).exec();
