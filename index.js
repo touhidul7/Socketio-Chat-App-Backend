@@ -30,14 +30,31 @@ io.on("connection", (socket) => {
 
     socket.on('newMessage', async (msg) => {
         try {
-            const newMessage = new Chat(msg);
-            await newMessage.save();
-            io.emit('message', msg);
-            console.log("Message received:", msg);
+            const newMessage = new Chat({
+                username: msg.username,
+                message: msg.message,
+                avatar: msg.avatar,
+                timeStamp: msg.timeStamp || Date.now(), // optional fallback
+            });
+
+            const savedMsg = await newMessage.save();
+
+            // Emit the message back with tempId (for client to match and update status)
+            io.emit('message', {
+                _id: savedMsg._id, // optional
+                username: savedMsg.username,
+                message: savedMsg.message,
+                avatar: savedMsg.avatar,
+                timeStamp: savedMsg.timeStamp,
+                tempId: msg.tempId, // send back tempId so client can replace it
+            });
+
+            console.log("Message received & saved:", savedMsg);
         } catch (err) {
             console.error("Error saving message:", err);
         }
     });
+
 
     socket.on("disconnect", () => {
         console.log("User disconnected");
